@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TCG Services</title>
+            
+  	<link rel="stylesheet" type="text/css" href="Styles/Site.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  	<link rel="stylesheet" type="text/css" href="css/webflow.css">
+  	<link rel="stylesheet" type="text/css" href="css/ttvideo-dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/dataStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+  
+	<!-- Scripts -->  
+	<script src="Scripts/jquery_v2.1.1.js" type="text/javascript"></script>     		
+  	<script src="Scripts/wsInterface.js" type="text/javascript"></script>
+  	<script src="Scripts/GUIDInterface.js" type="text/javascript"></script>
+ 	<script src="Scripts/knockout-3.1.0.js" type="text/javascript"></script>
+    <script src="Scripts/modernizr.js" type="text/javascript"></script>
+	<script src="Scripts/modalpopup.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+  <main class="alert bg_alert" id="main">
+    <div class="wrapper">
+      <div class="alert_message">
+        <div>Alert Message Goes Here.</div>
+      </div>
+    </div>
+  </main>
+  
+  <div class="title_bar">
+    <div class="wrapper">
+      <div class="w-row">
+        <div class="w-col w-col-6 title_bar_lefts">
+          <img src="images/ttvideo_logo.png" alt="5398c85ff7fa6d525a4ba9ea_ttvideo_logo.png">
+        </div>
+      </div>
+      <div class="title_box">
+        <div>Manage your Dashboard products here. Any other information can go here.</div>
+      </div>
+    </div>
+  </div>
+    
+    <div class="main_body bg_grey" id="alert">
+        <div class="wrapper">
+            <div class="w-row">
+                <div class="w-col w-col-12 table_columns">
+                    <div class="whitebox">
+	                    <div class="whiteblock_header">
+	                        <div>Plans and Pricing</div>
+	                    </div>
+	            	    <div class="whitebox_content">
+
+                          <!-- START -->       
+                          <div class="w-row data-wrap">
+                              <div id="servicescontent" data-bind="template: {name: 'paneTier-template', foreach: Services}"></div>
+                          </div>                              
+                          <!-- END -->
+
+	                    </div>
+	                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- *****************   Tier Template    ********************************* -->  
+<script type="text/html" id="paneTier-template">
+    <!-- ko if: (Name != "Together Talk Video - Pro Trial")-->
+	<div id="scrollbox" class="w-col w-col-4 sidebar_right_sm" style="height:600px; padding: 10px;">
+
+		<div class="conf-data-row" data-icon='false'>	
+
+            <div class="w-row conf-row-top">
+                <div class="w-col w-col-12 col-info" align="center">
+                    <div class="row-title"><label data-bind='text: Name'></label></div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="w-row conf-row-top" align="center">
+
+                <div class="w-col w-col-12 col-info">
+                    <ul id="classOfServiceList" data-role="listview" data-inset="false" style="list-style:none" data-bind="template: {name: 'services_template', foreach: ClassOfService}">
+                    </ul>
+                </div>
+
+                <div class="w-col w-col-12 col-info">
+                    <ul id="classOfServiceListPadding" data-role="listview" data-inset="false" style="list-style:none" data-bind="template: {name: 'padding_template', foreach: ClassOfService}">
+				           </ul>
+                </div>
+
+            </div>
+
+            <div id="buttonselection">
+                <div id="switchPlanButton" align="center" data-bind="visible: !Active">
+                    <a data-bind="value: Active, attr : {id : ServiceID}" onclick="updateTTVAccountProfileService(id)" class="button btn_startconf">Switch To This Plan</a>
+                </div> 
+                        
+                <div id="checkMarkPlan" align="center" data-bind="visible: Active">
+                    <img src="Images/checkMark.png" />
+                </div>
+            </div>
+ 
+        </div>
+
+    </div>
+    <!-- /ko -->
+</script>
+<!-- ********************************************************************************* -->
+
+<!-- *****************   ClassOfService Template    ********************************* -->
+<script type="text/html" id="services_template">
+	<!-- ko if: (MarketingText != null)-->
+		<li class="row-tier-title" data-bind="text: MarketingText"></li>
+		<br><br>
+	<!-- /ko -->
+</script>
+<!-- ******************************************************************** -->
+
+<!-- *****************   Padding Template - forces switchPlan button OR checkMark to align horizontally  ********************************* -->
+<script type="text/html" id="padding_template">
+	<!-- ko if: (MarketingText == null)-->
+		<li class="row-tier-title">&nbsp</li>
+		<br><br>
+	<!-- /ko -->
+</script>
+<!-- ******************************************************************** -->
+ 
+ 
+ 
+</body>
+
+<!-- javascript includes -->
+<script src="Scripts/pageMenuBar.js" type="text/javascript"></script>
+<script src="Scripts/pageHeading.js" type="text/javascript"></script>
+<script src="Scripts/pageFooter.js" type="text/javascript"></script>
+<script src="BillRig.js" type="text/javascript"></script>
+
+</html>
+
+
